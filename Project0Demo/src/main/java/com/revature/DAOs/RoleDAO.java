@@ -61,4 +61,5 @@ public class RoleDAO implements RoleDAOInterface{
     public int updateRoleSalary(int id, int newSalary) {
         return 0;
     }
+
 }

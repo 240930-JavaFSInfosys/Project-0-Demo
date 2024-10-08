@@ -14,6 +14,7 @@ public class Employee {
 
     //Another role field - just the id this time
     //This will be useful when inserting a new Employees - we can skip making a Role object when inserting Employees
+        //This could also be helpful when updating an Employee's Role!
     private int role_id_fk;
 
     //boilerplate code------------------------------
