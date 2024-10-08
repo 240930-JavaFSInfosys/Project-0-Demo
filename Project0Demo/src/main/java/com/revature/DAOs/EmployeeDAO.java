@@ -34,7 +34,7 @@ public class EmployeeDAO implements EmployeeDAOInterface{
                 //...while executeQuery() is used with SELECTS
 
             //We can then return the new Employee object (we can just use the method parameter)
-            return emp
+            return emp;
 
         } catch (SQLException e){
             e.printStackTrace(); //tells us what went wrong
