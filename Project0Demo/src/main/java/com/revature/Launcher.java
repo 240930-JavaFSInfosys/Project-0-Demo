@@ -8,6 +8,7 @@ import com.revature.utils.ConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Launcher {
 
@@ -38,6 +39,13 @@ public class Launcher {
         //test out Insert Employee
         Employee e = new Employee("Vishnu", "Srinivasan", 1);
         System.out.println(eDAO.insertEmployee(e));
+
+        //test out Get All Employees
+        ArrayList<Employee> emps = eDAO.getAllEmployees();
+
+        for(Employee emp : emps){
+            System.out.println(emp);
+        }
 
     }
 

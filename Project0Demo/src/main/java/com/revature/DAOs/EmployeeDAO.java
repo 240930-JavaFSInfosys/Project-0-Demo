@@ -104,6 +104,4 @@ public class EmployeeDAO implements EmployeeDAOInterface{
         return null;
     }
 
-
-
 }
