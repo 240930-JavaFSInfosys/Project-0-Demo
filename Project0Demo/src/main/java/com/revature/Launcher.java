@@ -1,5 +1,7 @@
 package com.revature;
 
+import com.revature.DAOs.RoleDAO;
+import com.revature.models.Role;
 import com.revature.utils.ConnectionUtil;
 
 import java.sql.Connection;
@@ -21,6 +23,14 @@ public class Launcher {
             e.printStackTrace(); //this is what tells us our error message (the red text)
             System.out.println("CONNECTION FAILED D:");
         }
+
+
+        //Testing my DAO methods-----------------------
+        RoleDAO rDAO = new RoleDAO();
+
+        //test out Get Role By Id
+        Role r = rDAO.getRoleById(2);
+        System.out.println(r);
 
     }
 
