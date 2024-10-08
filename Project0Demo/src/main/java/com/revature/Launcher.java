@@ -40,6 +40,9 @@ public class Launcher {
         Employee e = new Employee("Vishnu", "Srinivasan", 1);
         System.out.println(eDAO.insertEmployee(e));
 
+        //test out Update Role Salary
+        System.out.println(rDAO.updateRoleSalary(3, 999999));
+
         //test out Get All Employees
         ArrayList<Employee> emps = eDAO.getAllEmployees();
 
