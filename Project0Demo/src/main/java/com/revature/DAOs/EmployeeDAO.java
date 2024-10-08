@@ -36,6 +36,9 @@ public class EmployeeDAO implements EmployeeDAOInterface{
             //We can then return the new Employee object (we can just use the method parameter)
             return emp;
 
+            //TODO: you could get the emp from the DB but it would be a bit more work
+            //we would need some other getBy___ method for employees, then return that
+
         } catch (SQLException e){
             e.printStackTrace(); //tells us what went wrong
             System.out.println("Couldn't insert Employee");
