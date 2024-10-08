@@ -1,11 +1,10 @@
 package com.revature.DAOs;
 
 import com.revature.models.Employee;
+import com.revature.models.Role;
 import com.revature.utils.ConnectionUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 //DAO == "Data Access Object", it will have methods that access our DB
@@ -50,6 +49,58 @@ public class EmployeeDAO implements EmployeeDAOInterface{
 
     @Override
     public ArrayList<Employee> getAllEmployees() {
+
+        //We need to open a Connection to the DB
+        try(Connection conn = ConnectionUtil.getConnection()){
+
+            //SQL String - this one is easier since there are no variables
+            String sql = "SELECT * FROM employees";
+
+            //We can use a Statement object instead of PreparedStatement since there are no variables
+            Statement s = conn.createStatement();
+
+            //Execute the query, saving the results in a ResultSet
+            ResultSet rs = s.executeQuery(sql);
+
+            //We need an ArrayList to store our Employees
+            ArrayList<Employee> employees = new ArrayList<>();
+
+            //Loop through the ResultSet with rs.next()
+            //rs.next() will return false when there are no more rows in the ResultSet (breaks the loop)
+            while(rs.next()){
+
+                //For every Employee found, add it to the ArrayList
+                //We will need to instantiate a new Employee object for each row in the ResultSet
+                //We can get each piece of Employee data with rs.get____ methods
+                Employee e = new Employee(
+                    rs.getInt("employee_id"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    null //TODO: we can use our getRoleByID method to fill this Role object!
+                );
+
+                //Let's use RoleDAO.getRoleById() to add the Role to our employee
+                RoleDAO rDAO = new RoleDAO();
+                Role role = rDAO.getRoleById(rs.getInt("role_id_fk"));
+                //"Get a new Role by using the role_id_fk from the DB"
+
+                //Now that we have the Role, we can set it in our Employee
+                e.setRole(role);
+
+                //Now, we can finally add the Employee to our ArrayList
+                employees.add(e);
+
+            } //end of while loop
+
+            //when the while loop breaks, we can finally return the full ArrayList
+            return employees;
+
+        } catch (SQLException e){
+            e.printStackTrace(); //tells us what went wrong
+            System.out.println("Couldn't get all Employees");
+        }
+
+        //catch-all return
         return null;
     }
 
