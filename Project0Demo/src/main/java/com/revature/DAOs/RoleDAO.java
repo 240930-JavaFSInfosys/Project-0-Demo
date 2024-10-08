@@ -54,7 +54,7 @@ public class RoleDAO implements RoleDAOInterface{
         }
 
         //This is just a catch-all. If nothing gets returned (bad SQL query?) we get null
-        return null; 
+        return null;
     }
 
     @Override
