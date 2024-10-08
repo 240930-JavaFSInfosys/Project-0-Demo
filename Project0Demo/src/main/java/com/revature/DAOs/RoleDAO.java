@@ -53,7 +53,8 @@ public class RoleDAO implements RoleDAOInterface{
             System.out.println("Couldn't get Role by ID");
         }
 
-        return null;
+        //This is just a catch-all. If nothing gets returned (bad SQL query?) we get null
+        return null; 
     }
 
     @Override

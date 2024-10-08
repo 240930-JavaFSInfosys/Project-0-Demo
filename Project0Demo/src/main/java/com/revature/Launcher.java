@@ -29,7 +29,7 @@ public class Launcher {
         RoleDAO rDAO = new RoleDAO();
 
         //test out Get Role By Id
-        Role r = rDAO.getRoleById(2);
+        Role r = rDAO.getRoleById(3);
         System.out.println(r);
 
     }
