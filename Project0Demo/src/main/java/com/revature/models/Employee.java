@@ -1,7 +1,9 @@
 package com.revature.models;
 
+import java.util.Objects;
+
 //Remember, our model Classes should directly model our DB tables
-public class Employee {
+public class Employee extends Object{
 
     private int employee_id;
     private String first_name;
@@ -93,4 +95,5 @@ public class Employee {
                 ", role_id_fk=" + role_id_fk +
                 '}';
     }
+
 }
