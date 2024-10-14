@@ -62,6 +62,9 @@ public class EmployeeController {
         }
 
         //NOTE: This error handling will actually get stuffed into the Service layer
+        //The service layer will have try/catches for DAO methods
+        //And the controller layer will have try/catches for the Service layer and send error codes
+
         //But we're not there yet :)
 
     };
