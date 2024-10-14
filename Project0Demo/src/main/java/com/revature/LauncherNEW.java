@@ -1,5 +1,6 @@
 package com.revature;
 
+import com.revature.controllers.EmployeeController;
 import io.javalin.Javalin;
 
 public class LauncherNEW {
@@ -15,7 +16,15 @@ public class LauncherNEW {
          A port is like a parking space, a place for your app sit where other apps can find it */
 
         //Very basic callable resource just for fun
+        //NOTE: we sent a response from Launcher here, but Responses will really be in the Controllers
         app.get("/", ctx -> ctx.result("Hello Javalin and Postman!"));
+
+        //Instantiate Controllers so we can access the Handlers
+        EmployeeController ec = new EmployeeController();
+
+        //Get All Employees
+        /*TODO: further comments*/
+        app.get("/employees", ec.getEmployeesHandler);
 
     }
 
