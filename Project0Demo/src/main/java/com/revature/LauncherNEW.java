@@ -23,8 +23,15 @@ public class LauncherNEW {
         EmployeeController ec = new EmployeeController();
 
         //Get All Employees
-        /*TODO: further comments*/
+        /*app.get is the Javalin handler method that takes in GET requests
+        * In this case, it's calling the getEmployeesHandler of the EmployeeController
+        * So when we send a GET request to localhost:7000/employees it gets routed here. */
         app.get("/employees", ec.getEmployeesHandler);
+
+        //Insert Employee
+        /*app.post is the Javalin handler method that takes in POST requests
+        * Why are we allowed to have 2 handlers that end in /employees? They have different verbs!*/
+        app.post("/employees", ec.insertEmployeeHandler);
 
     }
 
