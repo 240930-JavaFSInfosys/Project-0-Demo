@@ -39,6 +39,9 @@ public class LauncherNEW {
         /*what is {id}? this is a PATH PARAMETER. The id we're searching for is a variable*/
         app.get("/roles/{id}", rc.getRoleByIdHandler);
 
+        //Update Role Salary
+        app.patch("/roles/{id}", rc.updateRoleSalary);
+
     }
 
 }
