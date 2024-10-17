@@ -25,7 +25,7 @@ public class LauncherNEW {
         //Exception handler for the before handler, telling the user to log in if the session is null
         app.exception(IllegalArgumentException.class, (e, ctx) -> {
             ctx.status(401);
-            ctx.result(e.getMessage());
+            ctx.result(e.getMessage()); //we set this in the throw in the before handler above
         });
 
         /* We need create() to begin the instantiation of our Javalin object
