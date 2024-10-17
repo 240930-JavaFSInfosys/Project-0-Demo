@@ -1,5 +1,6 @@
 package com.revature;
 
+import com.revature.controllers.AuthController;
 import com.revature.controllers.EmployeeController;
 import com.revature.controllers.RoleController;
 import io.javalin.Javalin;
@@ -10,6 +11,16 @@ public class LauncherNEW {
 
         //Typical Javalin setup Syntax
         var app = Javalin.create().start(7000);
+
+        //BEFORE HANDLER! This is what's checking for a not null session to see if a user is logged in
+        //If a user is not logged (Session == null), then send back a 401 and tell them to log in
+        app.before("/employees", ctx -> {
+            System.out.println("Inside Before Handler");
+            if(AuthController.ses == null){
+                ctx.status(401);
+                ctx.result("You must log in before doing this!");
+            }
+        });
 
         /* We need create() to begin the instantiation of our Javalin object
          We need start() to actually start our Javalin app on a port of our choosing
@@ -23,6 +34,7 @@ public class LauncherNEW {
         //Instantiate Controllers so we can access the Handlers
         EmployeeController ec = new EmployeeController();
         RoleController rc = new RoleController();
+        AuthController ac = new AuthController();
 
         //Get All Employees
         /*app.get is the Javalin handler method that takes in GET requests
@@ -41,6 +53,9 @@ public class LauncherNEW {
 
         //Update Role Salary
         app.patch("/roles/{id}", rc.updateRoleSalary);
+
+        //Login employee
+        app.post("/auth", ac.loginHandler);
 
     }
 
