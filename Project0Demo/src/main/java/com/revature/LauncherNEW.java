@@ -13,13 +13,19 @@ public class LauncherNEW {
         var app = Javalin.create().start(7000);
 
         //BEFORE HANDLER! This is what's checking for a not null session to see if a user is logged in
-        //If a user is not logged (Session == null), then send back a 401 and tell them to log in
+        //If a user is not logged (Session == null), then send throw an exception to be handled by the exception handler
         app.before("/employees", ctx -> {
             System.out.println("Inside Before Handler");
             if(AuthController.ses == null){
-                ctx.status(401);
-                ctx.result("You must log in before doing this!");
+                System.out.println("Session is null!");
+                throw new IllegalArgumentException("You must log in before doing this!");
             }
+        });
+
+        //Exception handler for the before handler, telling the user to log in if the session is null
+        app.exception(IllegalArgumentException.class, (e, ctx) -> {
+            ctx.status(401);
+            ctx.result(e.getMessage());
         });
 
         /* We need create() to begin the instantiation of our Javalin object
