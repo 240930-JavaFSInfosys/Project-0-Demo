@@ -1,8 +1,8 @@
 package com.revature.controllers;
 
 import com.revature.DAOs.AuthDAO;
+import io.javalin.http.Handler;
 
-import java.util.logging.Handler;
 
 //This Controller is for handling authentication functionalities (like login/regsiter)
 //In the future, Register user would be here too, but for now we have insertEmployee in the EmpController
